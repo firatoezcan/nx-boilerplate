@@ -1,0 +1,77 @@
+diff --git a/src/generators/component/files/__fileName__.spec.tsx__tmpl__ b/src/generators/component/files/__fileName__.spec.tsx__tmpl__
+index de6ef5eb30dc19865a2d38567692d4093f0f243b..9e2194465dacc8e690d3d09d4486c276fe1d4d0b 100644
+--- a/src/generators/component/files/__fileName__.spec.tsx__tmpl__
++++ b/src/generators/component/files/__fileName__.spec.tsx__tmpl__
+@@ -1,6 +1,6 @@
+ import { render } from '@testing-library/react';
+ 
+-import <%= className %> from './<%= fileName %>';
++import { <%= className %> } from './<%= fileName %>';
+ 
+ describe('<%= className %>', () => {
+   <%- componentTests %>
+diff --git a/src/generators/component/files/__fileName__.tsx__tmpl__ b/src/generators/component/files/__fileName__.tsx__tmpl__
+index ae2930d3e6dd51d96a1bb789abbb9acf13e4047f..466f475dbbd5209e3a7e7f96d75d8b67d36d7a39 100644
+--- a/src/generators/component/files/__fileName__.tsx__tmpl__
++++ b/src/generators/component/files/__fileName__.tsx__tmpl__
+@@ -23,8 +23,7 @@ import { Route, Link } from 'react-router-dom';
+     var extras = '';
+ } %>
+ 
+-/* eslint-disable-next-line */
+-export interface <%= className %>Props {
++export type <%= className %>Props = {
+ }
+ 
+ <% if (styledModule && styledModule !== 'styled-jsx') { %>
+@@ -50,7 +49,7 @@ export class <%= className %> extends Component<<%= className %>Props> {
+   }
+ }
+ <% } else { %>
+-export function <%= className %>(props: <%= className %>Props) {
++export const <%= className %> = (props: <%= className %>Props) => {
+   return (
+     <<%= wrapper %><%- extras %>>
+       <% if (styledModule === 'styled-jsx') { %><style jsx>{`div { color: pink; }`}</style><% } %>
+@@ -66,6 +65,4 @@ export function <%= className %>(props: <%= className %>Props) {
+ };
+ <% } %>
+ 
+-export default <%= className %>;
+-
+ <% if (inSourceTests === true) { %> <%- inSourceVitestTests %> <% } %>
+diff --git a/src/generators/hook/files/__fileName__.spec.tsx__tmpl__ b/src/generators/hook/files/__fileName__.spec.tsx__tmpl__
+index 728896676969f8705b1b3cdab073d74ee608fedf..56f80351bac7bc015b446fe6eda4e85d21695d92 100644
+--- a/src/generators/hook/files/__fileName__.spec.tsx__tmpl__
++++ b/src/generators/hook/files/__fileName__.spec.tsx__tmpl__
+@@ -1,7 +1,7 @@
+ import { act, renderHook } from '@testing-library/react';
+ import * as React from 'react';
+ 
+-import <%= hookName %> from './<%= fileName %>';
++import { <%= hookName %> } from './<%= fileName %>';
+ 
+ describe('<%= hookName %>', () => {
+   it('should render successfully', () => {
+diff --git a/src/generators/hook/files/__fileName__.ts__tmpl__ b/src/generators/hook/files/__fileName__.ts__tmpl__
+index ca2c3be0d245980fd743afc66a0fd7a90b0a9382..2f5e62b82052e9eb6c04b49345df871e70483f8e 100644
+--- a/src/generators/hook/files/__fileName__.ts__tmpl__
++++ b/src/generators/hook/files/__fileName__.ts__tmpl__
+@@ -1,15 +1,12 @@
+ import { useState, useCallback } from 'react'
+ 
+-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+-export interface <%= hookTypeName %> {
++export type <%= hookTypeName %> = {
+   count: number;
+   increment: () => void;
+ }
+ 
+-export function <%= hookName %>(): <%= hookTypeName %> {
++export const <%= hookName %>(): <%= hookTypeName %> => {
+   const [count, setCount] = useState(0)
+   const increment = useCallback(() => setCount((x) => x + 1), [])
+   return { count, increment }
+ };
+-
+-export default <%= hookName %>;
