@@ -7,13 +7,15 @@
     "react:hook": "nx g @nrwl/react:hook --pascalCaseFiles=true --pascalCaseDirectory=true --directory=hooks",
     "app:vite": "nx g @nrwl/react:app --tags=type:ui --skipWorkspaceJson=true --pascalCaseFiles=true --e2eTestRunner=none --style=none --unitTestRunner=vitest --bundler=vite --routing=true --babel=false --compiler=swc",
     "app:node": "nx g @nrwl/node:application --tags=type:backend --skipWorkspaceJson=true --e2eTestRunner=none --unitTestRunner=none --framework=fastify --docker=true",
-    "app:nextjs": "nx g @nrwl/next:application --tags=type:ui --skipWorkspaceJson=true --pascalCaseFiles=true --e2eTestRunner=none --style=css --unitTestRunner=jest"
+    "app:nest": "nx g @nrwl/nest:application --tags=type:backend --e2eTestRunner=none --unitTestRunner=none",
+    "app:next": "nx g @nrwl/next:application --tags=type:ui --skipWorkspaceJson=true --pascalCaseFiles=true --e2eTestRunner=none --style=css --unitTestRunner=jest"
   },
   "private": true,
   "devDependencies": {
-    "@nrwl/react": "^15.9.2",
-    "@nrwl/node": "^15.9.2",
+    "@nrwl/nest": "16.0.0-beta.0",
     "@nrwl/next": "^15.9.2",
+    "@nrwl/node": "^15.9.2",
+    "@nrwl/react": "^15.9.2",
     "@nrwl/workspace": "15.9.2",
     "nx": "15.9.2",
     "prettier": "^2.6.2",
